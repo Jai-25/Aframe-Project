@@ -1,0 +1,143 @@
+<html>
+<head>
+    <script src="libs/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v1.14.0/dist/aframe-extras.min.js"></script>
+    <script src="script.js"></script>
+    <script type="text/javascript" src="./libs/index.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+</head>
+<body>
+
+<a-scene>
+    <a-assets>
+        <audio id="blip1" src="assets/horned_owl.wav"></audio>
+        <a-asset-item id="couch" src="assets/Couch.obj"/>
+        <a-asset-item id="couchMat" src="assets/CouchMat.mtl"/>
+        <a-asset-item id="benchpress" src="assets/benchpress.dae"/>
+        <a-asset-item id="dumbbellrack" src="assets/dumbbellrack.obj"/>
+        <a-asset-item id="remote" src="assets/remote.obj"/>
+        <a-asset-item id="basketball" src="assets/basketball.obj"/>
+        <a-asset-item id="monitor" src="assets/monitor.obj"/>
+        <a-asset-item id="gamingchair" src="assets/GamingChair.obj"/>
+        <img id="whiteMarble" src="https://codechangers.com/lessons/vr/images/pexel/canvas.jpg"/>
+        <img id="C 'n' C" src="https://codechangers.com/lessons/vr/images/pexel/marble.jpg"/>
+    </a-assets>
+    <a-sky color="#ECECEC"></a-sky>
+    <a-entity position="54 1.5 12">
+        <a-camera universal-controls>
+            <a-entity raycaster="far: 150; objects: .intersectable" cursor geometry="primitive: ring; radiusOuter: 0.015;
+                              radiusInner: 0.01; segmentsTheta: 32" material="color: #283644; shader: flat" position="0 0 -0.75"></a-entity>
+        </a-camera>
+    </a-entity>
+
+    <!-- Ceiling -->
+    <a-entity static-body geometry="primitive: box; depth: 50; height: 0.1; width: 50" position="55 14 5" material="shader: flat; side: double; opacity: 1;
+    src: #whiteMarble"></a-entity>
+
+    <!-- Trim -->
+    <a-entity geometry="primitive: box; depth: 0.6; height: 1; width: 50" position="55 13.5 -19.7" rotation="0 0 0" material="shader: standard;
+    roughness: 1; src: #C 'n' C;"></a-entity>
+        <a-entity geometry="primitive: box; depth: 0.6; height: 1; width: 50" position="55 13.5 29.7" rotation="0 0 0" material="shader: standard;
+    roughness: 1; src: #C 'n' C;"></a-entity>
+        <a-entity geometry="primitive: box; depth: 0.6; height: 1; width: 50" position="79.7 13.5 5" rotation="0 90 0" material="shader: standard;
+    roughness: 1; src: #C 'n' C;"></a-entity>
+        <a-entity geometry="primitive: box; depth: 0.6; height: 1; width: 50" position="30.3 13.5 5" rotation="0 90 0" material="shader: standard;
+    roughness: 1; src: #C 'n' C;"></a-entity>
+
+    <!-- Floor -->
+    <a-entity static-body geometry="primitive: box; depth: 50; height: 0.1; width: 50" position="55 -0.5 5" material="shader: flat; side: double; opacity: 1;
+src: #C 'n' C"></a-entity>
+
+    <!-- Walls  -->
+    <a-entity static-body geometry="primitive: box; depth: 1; height: 14; width: 50" position="30 6.5 5" rotation="0 90 0" material="shader: standard;
+color: #333; src: #whiteMarble"></a-entity>
+    <a-entity static-body geometry="primitive: box; depth: 1; height: 14; width: 50" position="80 6.5 5" rotation="0 90 0" material="shader: standard;
+color: #333; src: #whiteMarble"></a-entity>
+    <a-entity static-body geometry="primitive: box; depth: 1; height: 14; width: 50" position="55 6.5 -20" rotation="0 0 0" material="shader: standard;
+color: #333; src: #whiteMarble"></a-entity>
+    <a-entity static-body geometry="primitive: box; depth: 1; height: 14; width: 50" position="55 6.5 30" rotation="0 0 0" material="shader: standard;
+color: #333; src: #whiteMarble"></a-entity>
+
+    <!-- Table -->
+    <a-entity scale=".8 .8 .8" static-body geometry="primitive: box; depth: 8; height: 0.3; width: 3" position="58 1.2 5" rotation="0 90 0" material="shader: standard;
+    color: #444; src: #whiteMarble">
+        <a-entity static-body geometry="primitive: box; depth: 0.3; height: 2.2; width: 0.3" position="-1.2 -1 3.8" rotation="0 90 0" material="shader: standard;
+        color: #444; src: #whiteMarble"></a-entity>
+        <a-entity static-body geometry="primitive: box; depth: 0.3; height: 2.2; width: 0.3" position="1.2 -1 3.8" rotation="0 90 0" material="shader: standard;
+        color: #444; src: #whiteMarble"></a-entity>
+        <a-entity static-body geometry="primitive: box; depth: 0.3; height: 2.2; width: 0.3" position="1.2 -1 -3.8" rotation="0 90 0" material="shader: standard;
+        color: #444; src: #whiteMarble"></a-entity>
+        <a-entity static-body geometry="primitive: box; depth: 0.3; height: 2.2; width: 0.3" position="-1.2 -1 -3.8" rotation="0 90 0" material="shader: standard;
+        color: #444; src: #whiteMarble"></a-entity>
+    </a-entity>
+
+    <!--Remote-->
+    <a-entity scale=".005 .005 .005" position="58 1.35 5" rotation="-90 90 -10" material="color: black" obj-model="obj: #remote"></a-entity>
+
+    <!--Couch-->
+    <a-entity position = '58 0 -1' scale=".015 .015 .015" obj-model = "obj: #couch;" material="color: black"></a-entity>
+
+    <!--Bench Press-->
+    <a-entity collada-model="url(assets/benchpress.dae)" scale="3.5 3.5 3.5" position="40 2.2 23" rotation="0 180 0"></a-entity>
+
+    <!--Weight Racks-->
+    <a-entity obj-model="obj: #dumbbellrack" scale=".02 .02 .02" position="35 0 15" material="color: grey" rotation="0 90 0"></a-entity>
+
+    <!--Basketball-->
+    <a-entity dragndrop scale=".28 .28 .28" position="40 0 5" material="color: orange" obj-model="obj: #basketball"></a-entity> 
+
+    <!--Desk-->
+    <a-entity static-body geometry="primitive: box; depth: 6; height: 0.3; width: 3" position="70 2 -17" rotation="0 90 0" material="shader: standard;
+    color: #000; src: #whiteMarble">
+        <a-entity static-body geometry="primitive: box; depth: 0.1; height: 2.3; width: 0.1" position="-1.4 -1 2.9" rotation="0 90 0" material="shader: standard;
+        color: #000; src: #whiteMarble"></a-entity>
+        <a-entity static-body geometry="primitive: box; depth: 0.1; height: 2.3; width: 0.1" position="1.4 -1 2.9" rotation="0 90 0" material="shader: standard;
+        color: #000; src: #whiteMarble"></a-entity>
+        <a-entity static-body geometry="primitive: box; depth: 0.1; height: 2.3; width: 0.1" position="1.4 -1 -2.9" rotation="0 90 0" material="shader: standard;
+        color: #000; src: #whiteMarble"></a-entity>
+        <a-entity static-body geometry="primitive: box; depth: 0.1; height: 2.3; width: 0.1" position="-1.4 -1 -2.9" rotation="0 90 0" material="shader: standard;
+        color: #000; src: #whiteMarble"></a-entity>
+    </a-entity>
+
+    <!--Monitors-->
+    <a-entity obj-model="obj: #monitor" scale=".05 .05 .05" position="68.5 2 -17" rotation="0 25 0" material="color: black"></a-entity>
+    <a-entity obj-model="obj: #monitor" scale=".05 .05 .05" position="71.5 2 -17" rotation="0 -25 0" material="color: black"></a-entity>
+
+    <!--Chair-->
+    <a-entity obj-model="obj: #gamingchair" position="71 0 -14" scale=".16 .16 .16" material="color: black"></a-entity>
+
+    <!--Covid Switch-->
+    <a-entity         
+        
+        event-set__tarvis="_event: click; _target: #covid1; visible: false"
+        event-set__tarvis="_event: click; _target: #covid2; visible: false" static-body geometry="primitive: box; depth: 1.6; height: 2; width: 0.5" rotation="0 90 0" position="50 4 -19.5"  material="shader: standard;
+        color: #f00;">
+    </a-entity>
+
+    <a-entity  id="covOn" static-body geometry="primitive: box; depth: 1.6; height: 2; width: 0.5" rotation="0 90 0" position="55 4 -19.5"  material="shader: standard;
+        color: #0f0;"
+        
+        event-set__tarvis="_event: click; _target: #covid1; visible: true"
+        event-set__tarvis="_event: click; _target: #covid2; visible: true">  
+    </a-entity>
+
+
+    <a-entity id="covid2" visible="false" geometry="primitive: plane; height: 1; width: 2" position="68.8 3.2 -16.8" rotation="0 25 0" material="shader: flat; side: double; transparent: true;
+src: url(images/stocks.png)">
+    </a-entity>
+
+    <a-entity id="covid1" visible="false" geometry="primitive: plane; height: 1; width: 2" position="71.2 3.2 -16.8" rotation="0 -25 0" material="shader: flat; side: double; transparent: true;
+src: url(images/stocks.png)">
+    </a-entity>
+
+    <a-entity geometry="primitive: plane; height: 7; width: 9" position="60 6.5 12" rotation="0 180 0" material="shader: flat; side: double; transparent: true;
+src: url(images/HBO.jpg)">
+        <a-box color="black" depth=".15" height="8" width="10" position="0 0 -.1"></a-box>
+        <a-cylinder color="black" position="0 4 -.4" height="6" radius=".3"></a-cylinder>
+    </a-entity>
+    
+    
+</a-scene>
+
+</body>
+</html>
